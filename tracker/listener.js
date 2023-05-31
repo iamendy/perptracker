@@ -42,6 +42,7 @@ async function main() {
     "0x15D3435f25eB464EA86853037Da94137BD76eF70",
   ];
 
+  //fetch watched assets
   let amms = [
     "0x92b96d53cead8f3e13bcee03f1d9691a50194d1a",
     "0xac2eadb88d9e4eef34452943330f93e9a81de72d",
@@ -107,39 +108,4 @@ async function main() {
   });
 }
 
-async function check() {
-  newTrade = {
-    trader: "0x6CF3F6059e8F181AF8E01e737f8B917356F895aE",
-    amm: "0x70A1Bee795A05F78a7185545c7e6A93D02442F5C",
-    margin: "3.018",
-    exchangedPositionNotional: "0.001",
-    exchangedPositionSize: "0.000070341217930741",
-    fee: "0.000002",
-    positionSizeAfter: "0.17717166962225604",
-    realizedPnl: "0.0",
-    unrealizedPnlAfter: "0.000000592364484116",
-    badDebt: "0.0",
-    liquidationPenalty: "0.0",
-    markPrice: "14.216417444957523237",
-    fundingPayment: "0.0",
-  };
-  const requestOptions = {
-    method: "POST",
-    body: JSON.stringify(newTrade),
-  };
-
-  await fetch("http://localhost:3000/api/handle-event", requestOptions)
-    .then((response) => response.json())
-    .then((data) => {
-      // Handle the response data
-      console.log("Response:", data);
-    })
-    .catch((error) => {
-      // Handle any errors
-      console.error("Error:", error);
-    });
-}
-
-check();
-
-//main();
+main();

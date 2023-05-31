@@ -21,11 +21,8 @@ export default async function handler(req, res) {
     },
   });
 
-  //return console.log(emailSubscribers);
-
   //extract the emails
   const extractedEmails = emailSubscribers.map((email) => email.subscriber);
-  console.log(extractedEmails);
 
   //send email asynchronously
   async function sendEmail(recipients) {
