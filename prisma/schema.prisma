@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Asset {
+  id        Int      @id @default(autoincrement())
+  name     String   @unique
+  address   String? @unique
+  subscribers Subscriber[]
+  createdAt DateTime @default(now())
+}
+
+model Subscriber {
+  id  Int  @id @default(autoincrement())
+  proTrader   String 
+  subscriber   String
+  asset Asset @relation(fields: [assetId], references: [id]) 
+  assetId Int 
+  subscribed Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
